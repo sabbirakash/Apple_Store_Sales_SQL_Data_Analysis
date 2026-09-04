@@ -221,6 +221,7 @@ The project is split into three tiers of questions to test SQL skills of increas
       WHERE diff_date >= 0;
    ```
    ![query-12](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/12.png)
+   
 13. Determine how many warranty claims were filed for products launched in the last two years.
    ```sql
          SELECT 
@@ -239,6 +240,7 @@ The project is split into three tiers of questions to test SQL skills of increas
          	AND ((w.claim_date - p.launch_date) >=  0);
    ```
    ![query-13](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/13.png)
+   
 14. List the months in the last three years where sales exceeded 5,000 units in the USA.
    ```sql
          SELECT
@@ -256,6 +258,7 @@ The project is split into three tiers of questions to test SQL skills of increas
          HAVING SUM(sl.quantity) > 5000;
    ```
    ![query-14](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/14.png)
+   
 15. Identify the product category with the most warranty claims filed in the last two years.
    ```sql
          SELECT 
@@ -296,6 +299,7 @@ The project is split into three tiers of questions to test SQL skills of increas
          ORDER BY 4 DESC;
     ```
    ![query-16](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/16.png)
+   
 17. Analyze the year-by-year growth ratio for each store.
    ```sql
          WITH tb1 AS
@@ -324,6 +328,7 @@ The project is split into three tiers of questions to test SQL skills of increas
    ```
    ![query-17.1](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/17.1.png)
    ![query-17.2](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/17.2.png)
+   
 18. Calculate the correlation between product price and warranty claims for products sold in the last five years, segmented by price range.
    ```sql
          SELECT 
@@ -342,6 +347,7 @@ The project is split into three tiers of questions to test SQL skills of increas
          GROUP BY 1;
    ```
    ![query-18](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/18.png)
+   
 19. Identify the store with the highest percentage of "Completed" claims relative to total claims filed.
    ```sql
          WITH tb1 AS
@@ -379,6 +385,7 @@ The project is split into three tiers of questions to test SQL skills of increas
    ```
    ![query-19.1](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/19.1.png)
    ![query-19.2](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/19.2.png)
+   
 20. Write a query to calculate the monthly running total of sales for each store over the past four years and compare trends during this period.
    ```sql
          WITH tb1 AS 
@@ -401,6 +408,7 @@ The project is split into three tiers of questions to test SQL skills of increas
          FROM tb1;
    ```
    ![query-20](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/20.png)
+   
 21. Analyze product sales trends over time, segmented into key periods: from launch to 6 months, 6-12 months, 12-18 months, and beyond 18 months.
    ```sql
          WITH tab1 AS
