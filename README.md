@@ -73,9 +73,9 @@ The project is split into three tiers of questions to test SQL skills of increas
       GROUP BY country
       ORDER BY store_num DESC;
    ```
-   
-3. Calculate the total number of units sold by each store.
-4. Identify how many sales occurred in December 2023.
+   (https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/1.png)
+2. Calculate the total number of units sold by each store.
+3. Identify how many sales occurred in December 2023.
 5. Determine how many stores have never had a warranty claim filed.
 6. Calculate the percentage of warranty claims marked as "Warranty Rejected".
 7. Identify which store had the highest total units sold in the last 2 year.
