@@ -261,6 +261,7 @@ The project is split into three tiers of questions to test SQL skills of increas
    ![query-11](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/11.png)
    ## Business Insight:
    Low-performing products may require promotional campaigns, pricing adjustments, or discontinuation in specific markets to improve inventory efficiency.
+
 12. Calculate how many warranty claims were filed within 180 days of a product sale.
    ```sql
       WITH abc AS (
@@ -281,6 +282,7 @@ The project is split into three tiers of questions to test SQL skills of increas
    
    ## Business Insight:
    Early warranty claims may indicate manufacturing defects or quality issues. Identifying these cases helps improve product reliability and supplier quality control.
+
 13. Determine how many warranty claims were filed for products launched in the last two years.
    ```sql
          SELECT 
@@ -302,6 +304,7 @@ The project is split into three tiers of questions to test SQL skills of increas
    
    ## Business Insight:
    Evaluating warranty claims for recently launched products helps assess product quality after release and enables faster corrective actions for newly introduced devices.
+
 14. List the months in the last three years where sales exceeded 5,000 units in the USA.
    ```sql
          SELECT
@@ -322,6 +325,7 @@ The project is split into three tiers of questions to test SQL skills of increas
    
    ## Business Insight:
    Identifying peak sales months helps forecast future demand, improve inventory planning, and optimize marketing campaigns during high-performing periods.
+
 15. Identify the product category with the most warranty claims filed in the last two years.
    ```sql
          SELECT 
@@ -367,6 +371,7 @@ The project is split into three tiers of questions to test SQL skills of increas
    
    ## Business Insight:
    Comparing warranty claim rates across countries helps identify regional differences in product performance, customer behavior, or service quality, enabling targeted operational improvements.
+
 17. Analyze the year-by-year growth ratio for each store.
    ```sql
          WITH tb1 AS
@@ -398,6 +403,7 @@ The project is split into three tiers of questions to test SQL skills of increas
    
    ## Business Insight:
    Measuring annual sales growth helps evaluate store performance over time, identify consistently growing locations, and detect stores that may require strategic intervention.
+
 18. Calculate the correlation between product price and warranty claims for products sold in the last five years, segmented by price range.
    ```sql
          SELECT 
@@ -419,6 +425,7 @@ The project is split into three tiers of questions to test SQL skills of increas
    
    ## Business Insight:
    Comparing warranty claims across different price segments helps determine whether premium or budget products experience higher service demand, supporting pricing and product quality strategies.
+
 19. Identify the store with the highest percentage of "Completed" claims relative to total claims filed.
    ```sql
          WITH tb1 AS
@@ -459,6 +466,7 @@ The project is split into three tiers of questions to test SQL skills of increas
    
    ## Business Insight:
    Stores with higher warranty completion rates demonstrate stronger customer service performance and more efficient after-sales support, contributing to improved customer satisfaction.
+
 20. Write a query to calculate the monthly running total of sales for each store over the past four years and compare trends during this period.
    ```sql
          WITH tb1 AS 
@@ -484,6 +492,7 @@ The project is split into three tiers of questions to test SQL skills of increas
    
    ## Business Insight:
    Running totals reveal long-term sales trends and growth patterns, helping management monitor store performance and make informed forecasting and budgeting decisions.
+
 21. Analyze product sales trends over time, segmented into key periods: from launch to 6 months, 6-12 months, 12-18 months, and beyond 18 months.
    ```sql
          WITH tab1 AS
