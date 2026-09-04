@@ -67,15 +67,22 @@ The project is split into three tiers of questions to test SQL skills of increas
 ### Easy to Medium (10 Questions)
 
 1. Find the number of stores in each country.
-2. Calculate the total number of units sold by each store.
-3. Identify how many sales occurred in December 2023.
-4. Determine how many stores have never had a warranty claim filed.
-5. Calculate the percentage of warranty claims marked as "Warranty Rejected".
-6. Identify which store had the highest total units sold in the last 2 year.
-7. Count the number of unique products sold in the last 2 year.
-8. Find the average price of products in each category.
-9. How many warranty claims were filed Completed?
-10. For each store, identify the best-selling day based on highest quantity sold.
+   ```sql
+      SELECT country, COUNT(store_id) AS store_num
+      FROM stores
+      GROUP BY country
+      ORDER BY store_num DESC;
+   ```
+   
+3. Calculate the total number of units sold by each store.
+4. Identify how many sales occurred in December 2023.
+5. Determine how many stores have never had a warranty claim filed.
+6. Calculate the percentage of warranty claims marked as "Warranty Rejected".
+7. Identify which store had the highest total units sold in the last 2 year.
+8. Count the number of unique products sold in the last 2 year.
+9. Find the average price of products in each category.
+10. How many warranty claims were filed Completed?
+11. For each store, identify the best-selling day based on highest quantity sold.
 
 ### Medium to Hard (5 Questions)
 
