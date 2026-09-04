@@ -278,11 +278,156 @@ The project is split into three tiers of questions to test SQL skills of increas
 ### Complex (6 Questions)
 
 16. Determine the percentage chance of receiving warranty claims after each purchase for each country.
+    ```sql
+         SELECT 
+         	*,
+         	((total_claim :: numeric / total_unit :: numeric) * 100) AS risk
+         FROM
+         	(SELECT
+         		st.country,
+         		SUM(sl.quantity) AS total_unit,
+         		COUNT(w.claim_id) AS total_claim
+         	FROM sales AS sl
+         	JOIN stores AS st
+         	ON sl.store_id = st.store_id
+         	LEFT JOIN warranty AS w
+         	ON w.sales_id = sl.sales_id
+         	GROUP BY 1) AS tb1
+         ORDER BY 4 DESC;
+    ```
+   ![query-16](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/16.png)
 17. Analyze the year-by-year growth ratio for each store.
+   ```sql
+         WITH tb1 AS
+         		(SELECT
+         			st.store_name,
+         			EXTRACT(YEAR FROM sl.sales_date) AS sales_year,
+         			SUM(sl.quantity * p.price ) AS current_sales
+         		FROM sales AS sl
+         		JOIN products AS p
+         		ON p.product_id = sl.product_id
+         		JOIN stores AS st
+         		ON st.store_id = sl.store_id
+         		GROUP BY 1,2),
+         	tb2 AS
+         		(SELECT
+         			tb1.*,
+         			LAG(current_sales, 1) OVER(PARTITION BY store_name ORDER BY sales_year) AS previous_sales
+         		FROM tb1)
+         SELECT
+         	tb2.*,
+         	ROUND(((tb2.current_sales - tb2.previous_sales) :: numeric / tb2.previous_sales :: numeric) * 100,2) AS growth
+         FROM tb2
+         WHERE (previous_sales IS NOT NULL)
+         	AND
+         	(sales_year <> 2024);		-- Current year(2024) is running that's we are ignoring it.
+   ```
+   ![query-17.1](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/17.1.png)
+   ![query-17.2](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/17.2.png)
 18. Calculate the correlation between product price and warranty claims for products sold in the last five years, segmented by price range.
+   ```sql
+         SELECT 
+         	CASE
+         		WHEN p.price < 500 THEN 'Less Expensive'
+         		WHEN p.price BETWEEN 500 AND 1000 THEN 'Mid Range Expensive'
+         		ELSE 'Very Expensive Product'
+         	END,
+         	COUNT(w.claim_id) AS claimed_item
+         FROM warranty AS w
+         LEFT JOIN sales AS sl
+         ON sl.sales_id = w.sales_id
+         JOIN products AS p
+         ON p.product_id = sl.product_id
+         WHERE sl.sales_date >= CURRENT_DATE - INTERVAL '5 YEAR'
+         GROUP BY 1;
+   ```
+   ![query-18](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/18.png)
 19. Identify the store with the highest percentage of "Completed" claims relative to total claims filed.
+   ```sql
+         WITH tb1 AS
+         	(SELECT 
+         		st.store_id,
+         		COUNT(w.claim_id) AS Completed_Claim
+         	FROM warranty AS w
+         	JOIN sales AS sl
+         	ON w.sales_id = sl.sales_id
+         	JOIN stores AS st
+         	ON st.store_id = sl.store_id
+         	WHERE w.repair_status = 'Completed'
+         	GROUP BY 1),
+         tb2 AS
+         	(SELECT 
+         		st.store_id,
+         		COUNT(w.claim_id) AS All_Claim
+         	FROM warranty AS w
+         	JOIN sales AS sl
+         	ON w.sales_id = sl.sales_id
+         	JOIN stores AS st
+         	ON st.store_id = sl.store_id
+         	GROUP BY 1)
+         SELECT 
+         	tb1.store_id,
+         	st.store_name,
+         	tb1.completed_claim,
+         	tb2.all_claim,
+         	ROUND((tb1.completed_claim :: numeric / tb2.all_claim :: numeric) * 100, 2) AS completed_claim_percentage
+         FROM tb1 JOIN tb2
+         ON tb1.store_id = tb2.store_id
+         JOIN stores AS st
+         ON st.store_id = tb1.store_id
+         ORDER BY 5 DESC;
+   ```
+   ![query-19.1](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/19.1.png)
+   ![query-19.2](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/19.2.png)
 20. Write a query to calculate the monthly running total of sales for each store over the past four years and compare trends during this period.
+   ```sql
+         WITH tb1 AS 
+         	(SELECT
+         		sl.store_id,
+         		EXTRACT(YEAR FROM sl.sales_date) AS sales_year,
+         		EXTRACT(MONTH FROM sl.sales_date) AS sales_month,
+         		SUM(sl.quantity * p.price ) AS total_revenue
+         	FROM sales AS sl
+         	LEFT JOIN products AS p
+         	ON sl.product_id = p.product_id
+         	GROUP BY 1,2,3
+         	ORDER BY 1,2,3)
+         SELECT
+         	store_id,
+         	sales_year,
+         	sales_month,
+         	total_revenue,
+         	SUM(total_revenue) OVER(PARTITION BY store_id ORDER BY sales_year, sales_month) AS running_total
+         FROM tb1;
+   ```
+   ![query-20](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/20.png)
 21. Analyze product sales trends over time, segmented into key periods: from launch to 6 months, 6-12 months, 12-18 months, and beyond 18 months.
+   ```sql
+         WITH tab1 AS
+         	(SELECT
+         		p.product_name,
+         		CASE
+         			WHEN sl.sales_date BETWEEN p.launch_date AND p.launch_date + INTERVAL '6 MONTH' THEN '0-6'
+         			WHEN sl.sales_date BETWEEN p.launch_date + INTERVAL '6 MONTH' AND p.launch_date + INTERVAL '12 MONTH' THEN '6-12'
+         			WHEN sl.sales_date BETWEEN p.launch_date + INTERVAL '12 MONTH' AND p.launch_date + INTERVAL '18 MONTH' THEN '12-18'
+         			ELSE '18+'
+         		END AS plc,
+         		SUM(sl.quantity) AS total_qty_sale
+         	FROM sales AS sl
+         	JOIN products AS p
+         	ON p.product_id = sl.product_id
+         	GROUP BY 1,2)
+         SELECT * FROM tab1
+         ORDER BY 1,
+         		CASE
+         			WHEN plc = '0-6' THEN 1
+         			WHEN plc = '6-12' THEN 2
+         			WHEN plc = '12-18' THEN 3
+         			ELSE 4
+         		END;
+   ```
+   ![query-21.1](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/21.1.png)
+   ![query-21.2](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/21.2.png)
 
 ## Project Focus
 
