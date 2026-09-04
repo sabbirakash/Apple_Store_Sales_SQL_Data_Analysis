@@ -259,8 +259,8 @@ The project is split into three tiers of questions to test SQL skills of increas
       WHERE rank = 1;
     ```
    ![query-11](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/11.png)
-## Business Insight:
-Low-performing products may require promotional campaigns, pricing adjustments, or discontinuation in specific markets to improve inventory efficiency.
+   ## Business Insight:
+   Low-performing products may require promotional campaigns, pricing adjustments, or discontinuation in specific markets to improve inventory efficiency.
 12. Calculate how many warranty claims were filed within 180 days of a product sale.
    ```sql
       WITH abc AS (
@@ -279,8 +279,8 @@ Low-performing products may require promotional campaigns, pricing adjustments, 
    ```
    ![query-12](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/12.png)
    
-## Business Insight:
-Early warranty claims may indicate manufacturing defects or quality issues. Identifying these cases helps improve product reliability and supplier quality control.
+   ## Business Insight:
+   Early warranty claims may indicate manufacturing defects or quality issues. Identifying these cases helps improve product reliability and supplier quality control.
 13. Determine how many warranty claims were filed for products launched in the last two years.
    ```sql
          SELECT 
@@ -300,8 +300,8 @@ Early warranty claims may indicate manufacturing defects or quality issues. Iden
    ```
    ![query-13](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/13.png)
    
-## Business Insight:
-Evaluating warranty claims for recently launched products helps assess product quality after release and enables faster corrective actions for newly introduced devices.
+   ## Business Insight:
+   Evaluating warranty claims for recently launched products helps assess product quality after release and enables faster corrective actions for newly introduced devices.
 14. List the months in the last three years where sales exceeded 5,000 units in the USA.
    ```sql
          SELECT
@@ -320,8 +320,8 @@ Evaluating warranty claims for recently launched products helps assess product q
    ```
    ![query-14](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/14.png)
    
-## Business Insight:
-Identifying peak sales months helps forecast future demand, improve inventory planning, and optimize marketing campaigns during high-performing periods.
+   ## Business Insight:
+   Identifying peak sales months helps forecast future demand, improve inventory planning, and optimize marketing campaigns during high-performing periods.
 15. Identify the product category with the most warranty claims filed in the last two years.
    ```sql
          SELECT 
@@ -341,8 +341,8 @@ Identifying peak sales months helps forecast future demand, improve inventory pl
    ```
    ![query-15](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/15.png)
 
-## Business Insight:
-Categories with the highest warranty claims may require design improvements, enhanced quality assurance, or better customer support to reduce future claim rates.
+   ## Business Insight:
+   Categories with the highest warranty claims may require design improvements, enhanced quality assurance, or better customer support to reduce future claim rates.
 ### Complex (6 Questions)
 
 16. Determine the percentage chance of receiving warranty claims after each purchase for each country.
@@ -365,8 +365,8 @@ Categories with the highest warranty claims may require design improvements, enh
     ```
    ![query-16](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/16.png)
    
-## Business Insight:
-Comparing warranty claim rates across countries helps identify regional differences in product performance, customer behavior, or service quality, enabling targeted operational improvements.
+   ## Business Insight:
+   Comparing warranty claim rates across countries helps identify regional differences in product performance, customer behavior, or service quality, enabling targeted operational improvements.
 17. Analyze the year-by-year growth ratio for each store.
    ```sql
          WITH tb1 AS
@@ -396,8 +396,8 @@ Comparing warranty claim rates across countries helps identify regional differen
    ![query-17.1](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/17.1.png)
    ![query-17.2](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/17.2.png)
    
-## Business Insight:
-Measuring annual sales growth helps evaluate store performance over time, identify consistently growing locations, and detect stores that may require strategic intervention.
+   ## Business Insight:
+   Measuring annual sales growth helps evaluate store performance over time, identify consistently growing locations, and detect stores that may require strategic intervention.
 18. Calculate the correlation between product price and warranty claims for products sold in the last five years, segmented by price range.
    ```sql
          SELECT 
@@ -417,8 +417,8 @@ Measuring annual sales growth helps evaluate store performance over time, identi
    ```
    ![query-18](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/18.png)
    
-## Business Insight:
-Comparing warranty claims across different price segments helps determine whether premium or budget products experience higher service demand, supporting pricing and product quality strategies.
+   ## Business Insight:
+   Comparing warranty claims across different price segments helps determine whether premium or budget products experience higher service demand, supporting pricing and product quality strategies.
 19. Identify the store with the highest percentage of "Completed" claims relative to total claims filed.
    ```sql
          WITH tb1 AS
@@ -457,8 +457,8 @@ Comparing warranty claims across different price segments helps determine whethe
    ![query-19.1](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/19.1.png)
    ![query-19.2](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/19.2.png)
    
-## Business Insight:
-Stores with higher warranty completion rates demonstrate stronger customer service performance and more efficient after-sales support, contributing to improved customer satisfaction.
+   ## Business Insight:
+   Stores with higher warranty completion rates demonstrate stronger customer service performance and more efficient after-sales support, contributing to improved customer satisfaction.
 20. Write a query to calculate the monthly running total of sales for each store over the past four years and compare trends during this period.
    ```sql
          WITH tb1 AS 
@@ -482,8 +482,8 @@ Stores with higher warranty completion rates demonstrate stronger customer servi
    ```
    ![query-20](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/20.png)
    
-## Business Insight:
-Running totals reveal long-term sales trends and growth patterns, helping management monitor store performance and make informed forecasting and budgeting decisions.
+   ## Business Insight:
+   Running totals reveal long-term sales trends and growth patterns, helping management monitor store performance and make informed forecasting and budgeting decisions.
 21. Analyze product sales trends over time, segmented into key periods: from launch to 6 months, 6-12 months, 12-18 months, and beyond 18 months.
    ```sql
          WITH tab1 AS
@@ -512,8 +512,8 @@ Running totals reveal long-term sales trends and growth patterns, helping manage
    ![query-21.1](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/21.1.png)
    ![query-21.2](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/21.2.png)
 
-## Business Insight:
-Analyzing sales across different product lifecycle stages reveals how customer demand changes after product launch. These insights help optimize marketing efforts, inventory planning, and future product release strategies.
+   ## Business Insight:
+   Analyzing sales across different product lifecycle stages reveals how customer demand changes after product launch. These insights help optimize marketing efforts, inventory planning, and future product release strategies.
 ## Project Focus
 
 This project primarily focuses on developing and showcasing the following SQL skills:
