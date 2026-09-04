@@ -75,14 +75,113 @@ The project is split into three tiers of questions to test SQL skills of increas
    ```
    ![query-1](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/1.png)
 2. Calculate the total number of units sold by each store.
+   ```sql
+      SELECT 
+      	sl.store_id,
+      	st.store_name,
+      	SUM(sl.quantity) AS total_units
+      FROM sales AS sl
+      JOIN stores AS st
+      ON st.store_id = sl.store_id
+      GROUP BY 1,2
+      ORDER BY 3 DESC;
+   ```
+   ![query-2](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/2.png)
 3. Identify how many sales occurred in December 2023.
-5. Determine how many stores have never had a warranty claim filed.
-6. Calculate the percentage of warranty claims marked as "Warranty Rejected".
-7. Identify which store had the highest total units sold in the last 2 year.
-8. Count the number of unique products sold in the last 2 year.
-9. Find the average price of products in each category.
-10. How many warranty claims were filed Completed?
-11. For each store, identify the best-selling day based on highest quantity sold.
+   ```sql
+      SELECT COUNT(*)
+      FROM sales
+      WHERE TO_CHAR(sales_date, 'MM-YYYY') = '12-2023';
+   ```
+   ![query-3](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/3.png)
+4. Determine how many stores have never had a warranty claim filed.
+   ```sql
+      SELECT COUNT(*) FROM stores AS st
+      WHERE st.store_id NOT IN (
+      						SELECT DISTINCT store_id FROM sales AS sl
+      						RIGHT JOIN warranty AS w
+      						ON sl.sales_id = w.sales_id
+      						);
+   ```
+   ![query-4](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/4.png)
+5. Calculate the percentage of warranty claims marked as "Warranty Rejected".
+   ```sql
+      SELECT
+      	ROUND(COUNT(*)/
+      	(SELECT COUNT(*) FROM warranty) :: numeric
+      	*100,2) AS warranty_rejected_percentage
+      FROM warranty
+      WHERE repair_status = 'Rejected';
+   ```
+   ![query-5](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/5.png)
+6. Identify which store had the highest total units sold in the last 2 year.
+   ```sql
+      WITH abc AS
+      			(SELECT
+      				store_id,
+      				SUM(quantity) AS total_unit
+      			FROM sales
+      			WHERE sales_date >= (SELECT CURRENT_DATE - INTERVAL '2 year')
+      			GROUP BY store_id)
+      SELECT 
+      	s.store_id,
+      	s.store_name,
+      	abc.total_unit
+      FROM stores AS s
+      LEFT JOIN abc
+      ON s.store_id = abc.store_id
+      ORDER BY abc.total_unit DESC
+      LIMIT 1;
+   ```
+   ![query-6](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/6.png)
+7. Count the number of unique products sold in the last 2 year.
+   ```sql
+      SELECT 
+      	product_id,
+      	COUNT(*) AS sold
+      FROM sales
+      WHERE sales_date >= (SELECT CURRENT_DATE - INTERVAL '2 year')
+      GROUP BY 1
+      ORDER BY 2 DESC;
+   ```
+   ![query-7](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/7.png)
+8. Find the average price of products in each category.
+   ```sql
+      SELECT 
+      		p.category_id,
+      		c.category_name,
+      		AVG(p.price) AS avg_price
+      FROM products AS p
+      JOIN category AS c
+      ON c.category_id = p.category_id
+      GROUP BY 1,2
+      ORDER BY avg_price DESC;
+   ```
+   ![query-8](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/8.png)
+9. How many warranty claims were filed Completed?
+    ```sql
+      SELECT
+      	COUNT(*)
+      	-- EXTRACT(YEAR FROM claim_date) AS claim_year		-- Learn how to extract year from any date
+      FROM warranty
+      WHERE repair_status = 'Completed';
+    ```
+   ![query-9](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/9.png)
+10. For each store, identify the best-selling day based on highest quantity sold.
+    ```sql
+      SELECT * FROM(
+      		SELECT 
+      			sl.store_id,
+      			TO_CHAR(sl.sales_date, 'Day') AS sale_day,
+      			SUM((p.price * sl.quantity)) AS net_price,
+      			RANK() OVER (PARTITION BY sl.store_id ORDER BY SUM((p.price * sl.quantity)) DESC) AS rank
+      		FROM sales AS sl
+      		LEFT JOIN products AS p
+      		ON sl.product_id = p.product_id
+      		GROUP BY 1,2) AS tb1
+      WHERE rank = 1;
+    ```
+   ![query-10](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/10.png)
 
 ### Medium to Hard (5 Questions)
 
