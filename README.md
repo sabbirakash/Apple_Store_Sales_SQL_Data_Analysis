@@ -73,7 +73,7 @@ The project is split into three tiers of questions to test SQL skills of increas
       GROUP BY country
       ORDER BY store_num DESC;
    ```
-   (https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/1.png)
+   ![query-1](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/1.png)
 2. Calculate the total number of units sold by each store.
 3. Identify how many sales occurred in December 2023.
 5. Determine how many stores have never had a warranty claim filed.
