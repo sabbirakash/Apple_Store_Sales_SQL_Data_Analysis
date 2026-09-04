@@ -32,6 +32,8 @@ The project is ideal for data analysts looking to enhance their SQL skills by wo
 - LAG()
 - CASE
 - Aggregate Functions
+- EXTRACT()
+- TO_CHAR()
 - Date Functions
 - GROUP BY
 - HAVING
