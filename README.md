@@ -108,8 +108,8 @@ The project is split into three tiers of questions to test SQL skills of increas
       ORDER BY store_num DESC;
    ```
    ![query-1](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/1.png)
-## Business Insight:
-This analysis helps identify Apple's retail presence across different countries. Countries with more stores may represent larger customer markets, while regions with fewer stores could indicate potential opportunities for future expansion.
+   ## Business Insight:
+   This analysis helps identify Apple's retail presence across different countries. Countries with more stores may represent larger customer markets, while regions with fewer stores could indicate potential opportunities for future expansion.
    
 2. Calculate the total number of units sold by each store.
    ```sql
@@ -124,8 +124,8 @@ This analysis helps identify Apple's retail presence across different countries.
       ORDER BY 3 DESC;
    ```
    ![query-2](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/2.png)
-## Business Insight:
-Identifying the highest-performing stores enables management to recognize successful sales strategies, allocate inventory more effectively, and share best practices across other retail locations.
+   ## Business Insight:
+   Identifying the highest-performing stores enables management to recognize successful sales strategies, allocate inventory more effectively, and share best practices across other retail locations.
 3. Identify how many sales occurred in December 2023.
    ```sql
       SELECT COUNT(*)
@@ -133,8 +133,8 @@ Identifying the highest-performing stores enables management to recognize succes
       WHERE TO_CHAR(sales_date, 'MM-YYYY') = '12-2023';
    ```
    ![query-3](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/3.png)
-## Business Insight:
-Measuring sales during December helps evaluate holiday season performance. This information can support seasonal inventory planning, staffing decisions, and promotional campaign effectiveness.
+   ## Business Insight:
+   Measuring sales during December helps evaluate holiday season performance. This information can support seasonal inventory planning, staffing decisions, and promotional campaign effectiveness.
 4. Determine how many stores have never had a warranty claim filed.
    ```sql
       SELECT COUNT(*) FROM stores AS st
@@ -145,8 +145,8 @@ Measuring sales during December helps evaluate holiday season performance. This 
       						);
    ```
    ![query-4](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/4.png)
-## Business Insight:
-Stores with no warranty claims may indicate excellent product quality, better customer handling, or simply lower sales volume. These locations can be further investigated to understand the underlying reasons.
+   ## Business Insight:
+   Stores with no warranty claims may indicate excellent product quality, better customer handling, or simply lower sales volume. These locations can be further investigated to understand the underlying reasons.
 5. Calculate the percentage of warranty claims marked as "Warranty Rejected".
    ```sql
       SELECT
@@ -157,8 +157,8 @@ Stores with no warranty claims may indicate excellent product quality, better cu
       WHERE repair_status = 'Rejected';
    ```
    ![query-5](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/5.png)
-## Business Insight:
-Monitoring the rejection rate helps assess warranty policy effectiveness and identify cases where customers frequently submit invalid warranty requests, reducing unnecessary service costs.
+   ## Business Insight:
+   Monitoring the rejection rate helps assess warranty policy effectiveness and identify cases where customers frequently submit invalid warranty requests, reducing unnecessary service costs.
 6. Identify which store had the highest total units sold in the last 2 year.
    ```sql
       WITH abc AS
@@ -179,8 +179,8 @@ Monitoring the rejection rate helps assess warranty policy effectiveness and ide
       LIMIT 1;
    ```
    ![query-6](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/6.png)
-## Business Insight:
-Recognizing the best-performing store provides valuable insights into regional demand and operational excellence, helping management replicate successful strategies across other locations.
+   ## Business Insight:
+   Recognizing the best-performing store provides valuable insights into regional demand and operational excellence, helping management replicate successful strategies across other locations.
 7. Count the number of unique products sold in the last 2 year.
    ```sql
       SELECT 
@@ -192,8 +192,8 @@ Recognizing the best-performing store provides valuable insights into regional d
       ORDER BY 2 DESC;
    ```
    ![query-7](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/7.png)
-## Business Insight:
-Product diversity reflects the breadth of customer demand. Understanding how many different products were sold helps evaluate product portfolio performance and inventory utilization.
+   ## Business Insight:
+   Product diversity reflects the breadth of customer demand. Understanding how many different products were sold helps evaluate product portfolio performance and inventory utilization.
 8. Find the average price of products in each category.
    ```sql
       SELECT 
@@ -207,8 +207,8 @@ Product diversity reflects the breadth of customer demand. Understanding how man
       ORDER BY avg_price DESC;
    ```
    ![query-8](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/8.png)
-## Business Insight:
-Comparing average prices across product categories helps understand Apple's pricing strategy and supports revenue forecasting, product positioning, and profitability analysis.
+   ## Business Insight:
+   Comparing average prices across product categories helps understand Apple's pricing strategy and supports revenue forecasting, product positioning, and profitability analysis.
 9. How many warranty claims were filed Completed?
     ```sql
       SELECT
@@ -218,8 +218,8 @@ Comparing average prices across product categories helps understand Apple's pric
       WHERE repair_status = 'Completed';
     ```
    ![query-9](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/9.png)
-## Business Insight:
-Tracking completed warranty claims measures service efficiency and indicates how effectively customer issues are being resolved.
+   ## Business Insight:
+   Tracking completed warranty claims measures service efficiency and indicates how effectively customer issues are being resolved.
 10. For each store, identify the best-selling day based on highest quantity sold.
     ```sql
       SELECT * FROM(
@@ -235,8 +235,8 @@ Tracking completed warranty claims measures service efficiency and indicates how
       WHERE rank = 1;
     ```
    ![query-10](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/10.png)
-## Business Insight:
-Identifying the highest-performing sales day allows store managers to optimize staffing, marketing campaigns, and promotional events during peak customer activity.
+   ## Business Insight:
+   Identifying the highest-performing sales day allows store managers to optimize staffing, marketing campaigns, and promotional events during peak customer activity.
 
 ### Medium to Hard (5 Questions)
 
