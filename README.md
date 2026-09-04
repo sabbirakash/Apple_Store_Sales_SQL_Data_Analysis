@@ -186,10 +186,94 @@ The project is split into three tiers of questions to test SQL skills of increas
 ### Medium to Hard (5 Questions)
 
 11. Identify the least selling product in each country for each year based on total units sold.
+    ```sql
+      WITH tb1 AS (
+      	SELECT 
+      		st.country,
+      		p.product_name,
+      		SUM(sl.quantity) AS total_unit,
+      		RANK() OVER(PARTITION BY st.country ORDER BY SUM(sl.quantity)) AS rank
+      	FROM sales AS sl
+      	JOIN stores AS st
+      	ON sl.store_id = st.store_id
+      	JOIN products AS p
+      	ON p.product_id = sl.product_id
+      	GROUP BY 1,2
+      	)
+      SELECT * FROM tb1
+      WHERE rank = 1;
+    ```
+   ![query-11](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/11.png)
 12. Calculate how many warranty claims were filed within 180 days of a product sale.
+   ```sql
+      WITH abc AS (
+      	SELECT 
+      		sl.sales_id,
+      		sl.sales_date,
+      		sl.product_id,
+      		w.claim_date,
+      		(w.claim_date - sl.sales_date) AS diff_date
+      	FROM sales AS sl
+      	JOIN warranty AS w
+      	ON sl.sales_id = w.sales_id
+      	WHERE (w.claim_date - sl.sales_date) <= 180)
+      SELECT COUNT(*) FROM abc
+      WHERE diff_date >= 0;
+   ```
+   ![query-12](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/12.png)
 13. Determine how many warranty claims were filed for products launched in the last two years.
+   ```sql
+         SELECT 
+         	COUNT(*)
+         	-- sl.sales_id,
+         	-- sl.product_id,
+         	-- p.launch_date,
+         	-- w.claim_date,
+         	-- (claim_date - launch_date) AS diff_date
+         FROM sales AS sl
+         JOIN products AS p
+         ON sl.product_id = p.product_id
+         JOIN warranty AS w
+         ON w.sales_id = sl.sales_id
+         WHERE ((w.claim_date - p.launch_date) <=  730)
+         	AND ((w.claim_date - p.launch_date) >=  0);
+   ```
+   ![query-13](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/13.png)
 14. List the months in the last three years where sales exceeded 5,000 units in the USA.
+   ```sql
+         SELECT
+         	st.country,
+         	TO_CHAR(sl.sales_date, 'MM-YYYY'),		
+         	SUM(sl.quantity) AS total_unit
+         FROM sales AS sl
+         JOIN stores AS st
+         ON st.store_id = sl.store_id
+         WHERE 
+         	(country = 'United States')
+         	AND
+         	(sl.sales_date >= CURRENT_DATE - INTERVAL '3 YEAR')
+         GROUP BY 1,2
+         HAVING SUM(sl.quantity) > 5000;
+   ```
+   ![query-14](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/14.png)
 15. Identify the product category with the most warranty claims filed in the last two years.
+   ```sql
+         SELECT 
+         	c.category_name,
+         	COUNT(w.claim_id) AS total_claim
+         FROM warranty AS w
+         LEFT JOIN sales AS sl
+         ON w.sales_id = sl.sales_id
+         JOIN products AS p
+         ON p.product_id = sl.product_id
+         JOIN category AS c
+         ON c.category_id = p.category_id
+         WHERE w.claim_date >= CURRENT_DATE -INTERVAL '2 YEAR'
+         GROUP BY 1
+         ORDER BY total_claim DESC
+         LIMIT 1;
+   ```
+   ![query-15](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/15.png)
 
 ### Complex (6 Questions)
 
