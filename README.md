@@ -13,6 +13,14 @@ The project is ideal for data analysts looking to enhance their SQL skills by wo
 
 ![ERD](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/ERD%20image.png)
 
+## Tech Stack
+
+- PostgreSQL
+- pgAdmin
+- SQL
+- Git
+- GitHub
+
 Here’s the shortened and improved version of the "What’s Included" and "Why Choose This Project" sections, along with the link:
 
 ---
