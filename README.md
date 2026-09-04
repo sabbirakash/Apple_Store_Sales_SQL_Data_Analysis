@@ -21,6 +21,24 @@ The project is ideal for data analysts looking to enhance their SQL skills by wo
 - Git
 - GitHub
 
+## SQL Concept Used
+
+- INNER JOIN
+- LEFT JOIN
+- RIGHT JOIN
+- CTE
+- Window Functions
+- RANK()
+- LAG()
+- CASE
+- Aggregate Functions
+- Date Functions
+- GROUP BY
+- HAVING
+- ORDER BY
+- Subqueries
+- Common Table Expressions
+
 Here’s the shortened and improved version of the "What’s Included" and "Why Choose This Project" sections, along with the link:
 
 ---
