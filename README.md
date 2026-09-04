@@ -21,6 +21,12 @@ The project is ideal for data analysts looking to enhance their SQL skills by wo
 - Git
 - GitHub
 
+## Performance Optimization
+
+- created indexes
+- checked execution plans
+- considered query efficiency.
+
 ## SQL Concept Used
 
 - INNER JOIN
