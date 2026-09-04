@@ -108,7 +108,10 @@ The project is split into three tiers of questions to test SQL skills of increas
       ORDER BY store_num DESC;
    ```
    ![query-1](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/1.png)
-2. Calculate the total number of units sold by each store.
+### Business Insight:
+This analysis helps identify Apple's retail presence across different countries. Countries with more stores may represent larger customer markets, while regions with fewer stores could indicate potential opportunities for future expansion.
+   
+3. Calculate the total number of units sold by each store.
    ```sql
       SELECT 
       	sl.store_id,
@@ -121,14 +124,14 @@ The project is split into three tiers of questions to test SQL skills of increas
       ORDER BY 3 DESC;
    ```
    ![query-2](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/2.png)
-3. Identify how many sales occurred in December 2023.
+4. Identify how many sales occurred in December 2023.
    ```sql
       SELECT COUNT(*)
       FROM sales
       WHERE TO_CHAR(sales_date, 'MM-YYYY') = '12-2023';
    ```
    ![query-3](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/3.png)
-4. Determine how many stores have never had a warranty claim filed.
+5. Determine how many stores have never had a warranty claim filed.
    ```sql
       SELECT COUNT(*) FROM stores AS st
       WHERE st.store_id NOT IN (
@@ -138,7 +141,7 @@ The project is split into three tiers of questions to test SQL skills of increas
       						);
    ```
    ![query-4](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/4.png)
-5. Calculate the percentage of warranty claims marked as "Warranty Rejected".
+6. Calculate the percentage of warranty claims marked as "Warranty Rejected".
    ```sql
       SELECT
       	ROUND(COUNT(*)/
@@ -148,7 +151,7 @@ The project is split into three tiers of questions to test SQL skills of increas
       WHERE repair_status = 'Rejected';
    ```
    ![query-5](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/5.png)
-6. Identify which store had the highest total units sold in the last 2 year.
+7. Identify which store had the highest total units sold in the last 2 year.
    ```sql
       WITH abc AS
       			(SELECT
@@ -168,7 +171,7 @@ The project is split into three tiers of questions to test SQL skills of increas
       LIMIT 1;
    ```
    ![query-6](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/6.png)
-7. Count the number of unique products sold in the last 2 year.
+8. Count the number of unique products sold in the last 2 year.
    ```sql
       SELECT 
       	product_id,
@@ -179,7 +182,7 @@ The project is split into three tiers of questions to test SQL skills of increas
       ORDER BY 2 DESC;
    ```
    ![query-7](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/7.png)
-8. Find the average price of products in each category.
+9. Find the average price of products in each category.
    ```sql
       SELECT 
       		p.category_id,
@@ -192,7 +195,7 @@ The project is split into three tiers of questions to test SQL skills of increas
       ORDER BY avg_price DESC;
    ```
    ![query-8](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/8.png)
-9. How many warranty claims were filed Completed?
+10. How many warranty claims were filed Completed?
     ```sql
       SELECT
       	COUNT(*)
@@ -201,7 +204,7 @@ The project is split into three tiers of questions to test SQL skills of increas
       WHERE repair_status = 'Completed';
     ```
    ![query-9](https://github.com/sabbirakash/Apple_Store_Sales_SQL_Data_Analysis/blob/main/Query_Images/9.png)
-10. For each store, identify the best-selling day based on highest quantity sold.
+11. For each store, identify the best-selling day based on highest quantity sold.
     ```sql
       SELECT * FROM(
       		SELECT 
